@@ -13,10 +13,7 @@ This project analyzes sentiment (Positive, Neutral, Negative) for Arabic tourism
 - `classical_models.py` – Word2Vec encoding + classical ML models  
 - `deep_models.py` – AraBERT, mBERT, XLM-R training + AraBERT fine-tuning  
 - `main.py` – full pipeline (calls preprocessing + classical + deep models)  
-- `demo.py` – interactive demo to test sentences  
-- `data/` – dataset files (ignored in git)  
-- `models/` – trained models (ignored in git)  
-- `logs/`, `results/` – training logs, plots and metrics  
+- `demo.py` – interactive demo to test sentences    
 
 ## Setup
 
