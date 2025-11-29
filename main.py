@@ -1,6 +1,6 @@
 # ==========================================================
-# 🧾 Graduation Project - Sentiment Analysis on Saudi Tourism
-# 👨‍💻 Author: Yazeed Bin Mahfooz
+#  Graduation Project - Sentiment Analysis on Saudi Tourism
+#  Author: Yazeed Bin-Mahfooz
 # ==========================================================
 
 # ==========================================================
@@ -125,14 +125,14 @@ for name, model in ml_models.items():
     print(classification_report(y_test, preds))
 
 # ==========================================================
-# 6️⃣ BERT MODELS (AraBERT FIRST)
+# 6️⃣ BERT MODELS 
 # ==========================================================
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 deep_models = {
-    "AraBERT": "models/AraBERT_final",          # ✅ use your fine-tuned version
-    "mBERT": "bert-base-multilingual-cased",    # ✅ keep pretrained for training
-    "XLM-R": "xlm-roberta-base"                 # ✅ keep pretrained for training
+    "AraBERT": "models/AraBERT_final",          
+    "mBERT": "bert-base-multilingual-cased",    
+    "XLM-R": "xlm-roberta-base"                 
 }
 
 
@@ -209,29 +209,29 @@ for model_name, checkpoint in deep_models.items():
         print("💾 XLM-R model saved to models/XLMR_final/")
 
 
-    # # fine-tune only AraBERT
-    # if model_name == "AraBERT":
-    #     print("\n🔁 Fine-tuning AraBERT with optimized settings...")
-    #     ft_args = TrainingArguments(
-    #         output_dir="results/AraBERT_finetuned",
-    #         num_train_epochs=7,
-    #         per_device_train_batch_size=8,
-    #         per_device_eval_batch_size=8,
-    #         learning_rate=1.5e-5,
-    #         weight_decay=0.01,
-    #         warmup_ratio=0.1,
-    #         evaluation_strategy="epoch",
-    #         save_strategy="no",
-    #         logging_dir="logs/AraBERT_finetune",
-    #         logging_steps=50
-    #     )
-    #     ft_trainer = Trainer(model=model, args=ft_args,
-    #                          train_dataset=train_ds, eval_dataset=test_ds)
-    #     ft_trainer.train()
+     # fine-tune only AraBERT
+     if model_name == "AraBERT":
+         print("\n🔁 Fine-tuning AraBERT with optimized settings...")
+         ft_args = TrainingArguments(
+             output_dir="results/AraBERT_finetuned",
+             num_train_epochs=7,
+             per_device_train_batch_size=8,
+             per_device_eval_batch_size=8,
+             learning_rate=1.5e-5,
+             weight_decay=0.01,
+             warmup_ratio=0.1,
+             evaluation_strategy="epoch",
+             save_strategy="no",
+             logging_dir="logs/AraBERT_finetune",
+             logging_steps=50
+         )
+         ft_trainer = Trainer(model=model, args=ft_args,
+                              train_dataset=train_ds, eval_dataset=test_ds)
+         ft_trainer.train()
 
-    #     model.save_pretrained("models/AraBERT_final")
-    #     tokenizer.save_pretrained("models/AraBERT_final")
-    #     print("💾 Fine-tuned AraBERT saved to models/AraBERT_final/")
+         model.save_pretrained("models/AraBERT_final")
+         tokenizer.save_pretrained("models/AraBERT_final")
+         print("💾 Fine-tuned AraBERT saved to models/AraBERT_final/")
 
 # ==========================================================
 # 8️⃣ SAVE RESULTS AND VISUALIZE
