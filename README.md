@@ -21,9 +21,9 @@ This project analyzes sentiment (Positive, Neutral, Negative) for Arabic tourism
 ## Setup
 
 ```bash
-# create and activate venv (if not already)
+# create and activate vertual environment
 python -m venv venv
-venv\Scripts\activate  # on Windows PowerShell
+venv\Scripts\activate 
 
 # install dependencies
 pip install -r requirements.txt
