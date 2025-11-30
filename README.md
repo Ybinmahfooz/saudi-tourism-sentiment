@@ -13,17 +13,14 @@ This project analyzes sentiment (Positive, Neutral, Negative) for Arabic tourism
 - `classical_models.py` – Word2Vec encoding + classical ML models  
 - `deep_models.py` – AraBERT, mBERT, XLM-R training + AraBERT fine-tuning  
 - `main.py` – full pipeline (calls preprocessing + classical + deep models)  
-- `demo.py` – interactive demo to test sentences  
-- `data/` – dataset files (ignored in git)  
-- `models/` – trained models (ignored in git)  
-- `logs/`, `results/` – training logs, plots and metrics  
+- `demo.py` – interactive demo to test sentences    
 
 ## Setup
 
 ```bash
-# create and activate venv (if not already)
+# create and activate vertual environment
 python -m venv venv
-venv\Scripts\activate  # on Windows PowerShell
+venv\Scripts\activate 
 
 # install dependencies
 pip install -r requirements.txt
