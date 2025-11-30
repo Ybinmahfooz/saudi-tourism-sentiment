@@ -66,6 +66,29 @@ def clean_text(text):
 
 df["clean_text"] = df["text"].apply(clean_text)
 print("✅ Data cleaned successfully!")
+# ==========================================================
+# 📊 SUMMARY STATISTICS 
+# ==========================================================
+
+print("\n===== DATA SUMMARY =====")
+
+# total samples
+print("Total samples loaded:", len(df))
+
+# missing text before cleaning (optional)
+# if you want to measure before cleaning, store earlier df before cleaning
+# but this is fine for now
+print("Missing text after cleaning:", df["clean_text"].isna().sum())
+
+# empty strings after cleaning
+print("Empty text after cleaning:", (df["clean_text"].str.strip() == "").sum())
+
+# show example cleaned rows
+print("\nExample cleaned texts:")
+print(df["clean_text"].head())
+
+print("========================\n")
+
 
 # ==========================================================
 # 4️⃣ EXPLORATORY DATA ANALYSIS (EDA)
@@ -209,29 +232,29 @@ for model_name, checkpoint in deep_models.items():
         print("💾 XLM-R model saved to models/XLMR_final/")
 
 
-    # # fine-tune only AraBERT
-    # if model_name == "AraBERT":
-    #     print("\n🔁 Fine-tuning AraBERT with optimized settings...")
-    #     ft_args = TrainingArguments(
-    #         output_dir="results/AraBERT_finetuned",
-    #         num_train_epochs=7,
-    #         per_device_train_batch_size=8,
-    #         per_device_eval_batch_size=8,
-    #         learning_rate=1.5e-5,
-    #         weight_decay=0.01,
-    #         warmup_ratio=0.1,
-    #         evaluation_strategy="epoch",
-    #         save_strategy="no",
-    #         logging_dir="logs/AraBERT_finetune",
-    #         logging_steps=50
-    #     )
-    #     ft_trainer = Trainer(model=model, args=ft_args,
-    #                          train_dataset=train_ds, eval_dataset=test_ds)
-    #     ft_trainer.train()
+     # fine-tune only AraBERT
+    if model_name == "AraBERT":
+         print("\n🔁 Fine-tuning AraBERT with optimized settings...")
+         ft_args = TrainingArguments(
+             output_dir="results/AraBERT_finetuned",
+             num_train_epochs=7,
+             per_device_train_batch_size=8,
+             per_device_eval_batch_size=8,
+             learning_rate=1.5e-5,
+             weight_decay=0.01,
+             warmup_ratio=0.1,
+             evaluation_strategy="epoch",
+             save_strategy="no",
+             logging_dir="logs/AraBERT_finetune",
+             logging_steps=50
+         )
+         ft_trainer = Trainer(model=model, args=ft_args,
+                              train_dataset=train_ds, eval_dataset=test_ds)
+         ft_trainer.train()
 
-    #     model.save_pretrained("models/AraBERT_final")
-    #     tokenizer.save_pretrained("models/AraBERT_final")
-    #     print("💾 Fine-tuned AraBERT saved to models/AraBERT_final/")
+         model.save_pretrained("models/AraBERT_final")
+         tokenizer.save_pretrained("models/AraBERT_final")
+         print("💾 Fine-tuned AraBERT saved to models/AraBERT_final/")
 
 # ==========================================================
 # 8️⃣ SAVE RESULTS AND VISUALIZE
